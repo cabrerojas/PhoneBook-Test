@@ -6,7 +6,7 @@
 </ion-header>
 
 <ion-content>
-    <p-table #dt [columns]="cols" [rowHover]="true" [value]="users" styleClass="p-datatable-responsive-demo">
+    <p-table #dt [columns]="cols" [value]="users" styleClass="p-datatable-responsive-demo">
         <ng-template pTemplate="caption">
             <div class="table-header">
                 
@@ -22,31 +22,36 @@
                 <th>Nombre</th>
                 <th>Telefono</th>
                 <th>Comuna</th>
+                <th></th>
             </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-rowData let-columns="columns">
-            
+        <ng-template pTemplate="body" let-user >
             <tr>
                 <td>
                     <span class="p-column-title">Rut</span>
-                    {{rowData.rut}}
+                    {{user.rut}}
                 </td>
                 <td >
                     <span class="p-column-title">Nombre</span>
-                    {{rowData.nombre | decodeHtmlString}} {{rowData.apellido | decodeHtmlString}}
+                    {{user.nombre | decodeHtmlString}} {{user.apellido | decodeHtmlString}}
                 </td>
                 <td>
                     <span class="p-column-title">Telefono</span>
-                    {{rowData.telefono}}
+                    {{user.telefono}}
                 </td>
-
+              
                 <td>
                     <span class="p-column-title">Comuna</span>
-                    {{rowData.direccion.comuna.nombre | decodeHtmlString}}
+                    {{user.direccion.comuna.nombre | decodeHtmlString}}
                 </td>
-            </tr>
+                <td>
+                    <span class="p-column-title"></span>
+                    <p-button label="Detalle" icon="pi pi-id-card" 
+                    styleClass="p-button-success p-button-outlined"
+                    (click)="verDetalle(user)">
+                    </p-button>
+                </td>
+              </tr>
         </ng-template>
     </p-table>
-
-
   </ion-content>

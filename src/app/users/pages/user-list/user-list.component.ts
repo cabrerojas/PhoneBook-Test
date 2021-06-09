@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { Persona } from '../../interfaces/users.interfaces';
+import { UserDetailComponent } from '../../components/user-detail/user-detail.component';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-user-list',
@@ -10,28 +12,33 @@ import { Persona } from '../../interfaces/users.interfaces';
 export class UserListComponent implements OnInit {
 
   users: Persona[] = [];
-  cols: any[];
 
-  constructor(private userService:UserService) { }
+  constructor(private userService:UserService,
+              private modalCtlr: ModalController) { }
 
   ngOnInit() {
 
     this.userService.getUsers().subscribe(
       resp => {
-        
+
         this.users = resp.filter(user => user.activo == 1);
       
       }
     )
+  }
 
-    this.cols = [
-      { field: 'nombre', header: 'Nombre' },
-      { field: 'apellido', header: 'Apellido' },
-      { field: 'telefono', header: 'Telefono' },
-      { field: 'rut', header: 'Rut' },
-      { field: 'direccion.comuna.nombre', header: 'Comuna' }
-    ];
+
+  async verDetalle( user: Persona) {
+    const modal = await this.modalCtlr.create({
+      component: UserDetailComponent,
+      componentProps: {
+        user
+      }
+    });
+
+    modal.present();
 
   }
+
 
 }

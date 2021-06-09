@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { Persona } from '../../interfaces/users.interfaces';
 
 @Component({
   selector: 'app-user-detail',
@@ -7,8 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserDetailComponent implements OnInit {
 
-  constructor() { }
+  @Input () user: Persona;
 
-  ngOnInit() {}
+
+  constructor(private modalCtrl: ModalController) { }
+
+  ngOnInit() {
+  }
+
+  regresar() {
+    this.modalCtrl.dismiss();
+  }
 
 }
