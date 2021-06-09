@@ -18,9 +18,9 @@ export class UserListComponent implements OnInit {
 
     this.userService.getUsers().subscribe(
       resp => {
-        this.users = resp;
-        console.log(this.users);
         
+        this.users = resp.filter(user => user.activo == 1);
+      
       }
     )
 
@@ -28,7 +28,8 @@ export class UserListComponent implements OnInit {
       { field: 'nombre', header: 'Nombre' },
       { field: 'apellido', header: 'Apellido' },
       { field: 'telefono', header: 'Telefono' },
-      { field: 'rut', header: 'Rut' }
+      { field: 'rut', header: 'Rut' },
+      { field: 'direccion.comuna.nombre', header: 'Comuna' }
     ];
 
   }
