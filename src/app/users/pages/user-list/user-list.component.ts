@@ -10,6 +10,7 @@ import { Persona } from '../../interfaces/users.interfaces';
 export class UserListComponent implements OnInit {
 
   users: Persona[] = [];
+  cols: any[];
 
   constructor(private userService:UserService) { }
 
@@ -18,9 +19,17 @@ export class UserListComponent implements OnInit {
     this.userService.getUsers().subscribe(
       resp => {
         this.users = resp;
-
+        console.log(this.users);
+        
       }
     )
+
+    this.cols = [
+      { field: 'nombre', header: 'Nombre' },
+      { field: 'apellido', header: 'Apellido' },
+      { field: 'telefono', header: 'Telefono' },
+      { field: 'rut', header: 'Rut' }
+    ];
 
   }
 

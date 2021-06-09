@@ -1,1 +1,28 @@
-<ion-item *ngFor="let user of users"> {{user.nombre}} </ion-item> 
+
+<ion-header class="ion-no-border">
+  <ion-toolbar >
+  <ion-title>Lista de personas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <p-table [columns]="cols" [value]="users" styleClass="p-datatable-responsive-demo">
+        <ng-template pTemplate="header" let-columns>
+            <tr>
+                <th *ngFor="let col of columns">
+                    {{col.header}}
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-columns="columns">
+            <tr>
+                <td *ngFor="let col of columns">
+                    <span class="p-column-title">{{col.header}}</span>
+                    {{rowData[col.field]}}
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+
+
+  </ion-content>

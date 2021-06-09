@@ -5,6 +5,8 @@ import { UsersRoutingModule } from './users-routing.module';
 import { UserListComponent } from './pages/user-list/user-list.component';
 import { UserDetailComponent } from './components/user-detail/user-detail.component';
 import { UserComponent } from './components/user/user.component';
+import { IonicModule } from '@ionic/angular';
+import { PrimeNgModule } from '../prime-ng/prime-ng.module';
 
 
 @NgModule({
@@ -15,7 +17,9 @@ import { UserComponent } from './components/user/user.component';
   ],
   imports: [
     CommonModule,
-    UsersRoutingModule
+    UsersRoutingModule,
+    IonicModule,
+    PrimeNgModule
   ]
 })
 export class UsersModule { }
