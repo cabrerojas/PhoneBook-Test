@@ -7,13 +7,15 @@ import { UserDetailComponent } from './components/user-detail/user-detail.compon
 import { UserComponent } from './components/user/user.component';
 import { IonicModule } from '@ionic/angular';
 import { PrimeNgModule } from '../prime-ng/prime-ng.module';
+import { DecodeHtmlStringPipe } from './pipes/decode-html-string.pipe';
 
 
 @NgModule({
   declarations: [
     UserListComponent,
     UserDetailComponent,
-    UserComponent
+    UserComponent,
+    DecodeHtmlStringPipe
   ],
   imports: [
     CommonModule,
