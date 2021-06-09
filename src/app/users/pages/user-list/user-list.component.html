@@ -6,19 +6,43 @@
 </ion-header>
 
 <ion-content>
-    <p-table [columns]="cols" [value]="users" styleClass="p-datatable-responsive-demo">
+    <p-table #dt [columns]="cols" [rowHover]="true" [value]="users" styleClass="p-datatable-responsive-demo">
+        <ng-template pTemplate="caption">
+            <div class="table-header">
+                
+                <span class="p-input-icon-left">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Buscador global" />
+                </span>
+            </div>
+        </ng-template>
         <ng-template pTemplate="header" let-columns>
             <tr>
-                <th *ngFor="let col of columns">
-                    {{col.header}}
-                </th>
+                <th>Rut</th>
+                <th>Nombre</th>
+                <th>Telefono</th>
+                <th>Comuna</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-rowData let-columns="columns">
+            
             <tr>
-                <td *ngFor="let col of columns">
-                    <span class="p-column-title">{{col.header}}</span>
-                    {{rowData[col.field]}}
+                <td>
+                    <span class="p-column-title">Rut</span>
+                    {{rowData.rut}}
+                </td>
+                <td >
+                    <span class="p-column-title">Nombre</span>
+                    {{rowData.nombre | decodeHtmlString}} {{rowData.apellido | decodeHtmlString}}
+                </td>
+                <td>
+                    <span class="p-column-title">Telefono</span>
+                    {{rowData.telefono}}
+                </td>
+
+                <td>
+                    <span class="p-column-title">Comuna</span>
+                    {{rowData.direccion.comuna.nombre | decodeHtmlString}}
                 </td>
             </tr>
         </ng-template>
