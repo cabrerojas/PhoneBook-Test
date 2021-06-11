@@ -11,7 +11,7 @@
 
 
       <ion-list>
-        <ion-note slot="start">Telefono :</ion-note>
+        <ion-note slot="start">Teléfono :</ion-note>
         <ion-item>
           <ion-label>{{ user.telefono }}</ion-label>
           <ion-icon name="phone-portrait-outline" slot="end"></ion-icon>
@@ -31,6 +31,29 @@
       
 
       </ion-list>
+      
+      <ion-card *ngIf="userRutInvalid() || userPhoneInvalid() " >
+        <ion-card-header>
+          <ion-card-title>Problemas encontrados</ion-card-title>
+        </ion-card-header>
+      
+        <ion-card-content >
+
+          <ion-item *ngIf="userRutInvalid()">
+            <ion-text color="danger">
+              <li>El rut  {{ user.rut }} no tiene el formato correcto.</li> 
+            </ion-text>
+            
+          </ion-item>
+          <ion-item *ngIf="userPhoneInvalid()">
+            <ion-text color="danger">
+              <li>El telefono no cumple con el formato requerido de 11 dígitos.</li> 
+            </ion-text>
+          </ion-item>
+        </ion-card-content>
+      </ion-card>
+      
+
 
     </ion-card-content>
   </ion-card>

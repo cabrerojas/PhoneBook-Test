@@ -7,6 +7,7 @@ import { UserDetailComponent } from './components/user-detail/user-detail.compon
 import { IonicModule } from '@ionic/angular';
 import { PrimeNgModule } from '../prime-ng/prime-ng.module';
 import { DecodeHtmlStringPipe } from './pipes/decode-html-string.pipe';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { DecodeHtmlStringPipe } from './pipes/decode-html-string.pipe';
     CommonModule,
     UsersRoutingModule,
     IonicModule,
-    PrimeNgModule
+    PrimeNgModule,
+    ReactiveFormsModule
   ]
 })
 export class UsersModule { }

@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  UrlBase: 'https://private-anon-eb1abdb24d-testphonebook.apiary-mock.com'
 };

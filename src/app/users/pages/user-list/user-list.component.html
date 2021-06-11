@@ -6,7 +6,33 @@
 </ion-header>
 
 <ion-content>
-    <p-table #dt [columns]="cols" [value]="users" styleClass="p-datatable-responsive-demo">
+
+
+    <form [formGroup]="filterForm" >
+
+
+        <ion-item>
+            <ion-label>Region</ion-label>
+            <ion-select formControlName="regiones">
+                <ion-select-option value="" >Todas</ion-select-option>
+                <ion-select-option *ngFor="let region of regions" [value]="region.id">{{ region.nombre }}</ion-select-option>
+             
+            </ion-select>
+        </ion-item>
+
+        <ion-item *ngIf="comunas.length !== 0">
+            <ion-label>Comuna</ion-label>
+            <ion-select formControlName="comunas">
+                <ion-select-option value="" >Todas</ion-select-option>
+                <ion-select-option *ngFor="let comuna of comunas" [value]="comuna.id">{{ comuna.nombre| decodeHtmlString }}</ion-select-option>
+             
+            </ion-select>
+        </ion-item>
+
+    </form>
+
+
+    <p-table #dt [globalFilterFields]="['rut','nombre','telefono','direccion.comuna.nombre']" [value]="users" styleClass="p-datatable-responsive-demo">
         <ng-template pTemplate="caption">
             <div class="table-header">
                 
@@ -14,7 +40,15 @@
                     <i class="pi pi-search"></i>
                     <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Buscador global" />
                 </span>
+
+
+                
+                
+
             </div>
+
+
+            
         </ng-template>
         <ng-template pTemplate="header" let-columns>
             <tr>
@@ -48,10 +82,15 @@
                     <span class="p-column-title"></span>
                     <p-button label="Detalle" icon="pi pi-id-card" 
                     styleClass="p-button-success p-button-outlined"
-                    (click)="verDetalle(user)">
+                    (click)="details(user)">
                     </p-button>
                 </td>
               </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+            <tr>
+                <td colspan="8">No hay registros de usuarios.</td>
+            </tr>
         </ng-template>
     </p-table>
   </ion-content>

@@ -11,7 +11,7 @@ export class DecodeHtmlStringPipe implements PipeTransform {
 
 		var string = "";
 		var i = 0;
-    var c1,c2,c3;
+    	var c1,c2,c3;
 		var c = c1 = c2 = 0;
  
 		while ( i < value.length ) {
@@ -37,12 +37,6 @@ export class DecodeHtmlStringPipe implements PipeTransform {
 		}
  
 		return string;
-
-    
-
-   
-
-
 
   }
 
